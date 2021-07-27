@@ -22,7 +22,8 @@ function generateTestSet(phoneNum) {
   };
 
   let phoneNumArr = [...new Set(phoneNum.toString().split(""))];
-  for (i = 0; i < phoneNumArr.length; i++) {
+  let len = phoneNumArr.length;
+  for (i = 0; i < len; i++) {
     currentDigit = phoneNumArr[i];
     testSet.push(numpad[currentDigit]);
   }
@@ -34,8 +35,10 @@ function checkValidity(targetString, testSet) {
   let compareStr = "";
   let indexAt = [];
 
-  for (i = 0; i < testSet.length; i++) {
-    for (j = 0; j < targetString.length; j++) {
+  let len1 = testSet.length;
+  let len2 = targetString.length;
+  for (i = 0; i < len1; i++) {
+    for (j = 0; j < len2; j++) {
       if (contains.call(testSet[i], targetString.charAt(j))) {
         compareStr = compareStr.concat(targetString.charAt(j));
         indexAt.push(i);
