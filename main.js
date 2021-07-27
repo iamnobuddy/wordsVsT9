@@ -1,6 +1,7 @@
-let testSet = [];
+
 
 function generateTestSet(phoneNum, strArr) {
+  let testSet = [];
   let numpad = {
     2: "abc",
     3: "def",
@@ -19,14 +20,14 @@ function generateTestSet(phoneNum, strArr) {
   }
 
   strArr.forEach((element) => {
-    if (checkValidity(element)) output.push(element);
+    if (checkValidity(element, testSet)) output.push(element);
   });
 
   if (output != "") return output;
   else console.log("No match found!!");
 }
 
-function checkValidity(targetString) {
+function checkValidity(targetString, testSet) {
   let compareStr = "";
   let indexAt = [];
 
