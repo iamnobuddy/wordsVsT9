@@ -1,4 +1,14 @@
-function generateTestSetAndCheckValidity(phoneNum, strArr) {
+function wordsVsT9(phoneNum, strArr) {
+  let output = [];
+  strArr.forEach((element) => {
+    if (checkValidity(element, generateTestSet(phoneNum))) output.push(element);
+  });
+
+  if (output != "") return output;
+  else console.log("No match found!!");
+}
+
+function generateTestSet(phoneNum) {
   let testSet = [];
   let numpad = {
     2: "abc",
@@ -10,7 +20,7 @@ function generateTestSetAndCheckValidity(phoneNum, strArr) {
     8: "tuv",
     9: "wxyz",
   };
-  let output = [];
+
   let phoneNumStr = phoneNum.toString();
   for (i = 0; i < phoneNumStr.length; i++) {
     //check to see if there are repeating digits
@@ -23,15 +33,10 @@ function generateTestSetAndCheckValidity(phoneNum, strArr) {
     }
   }
 
-  strArr.forEach((element) => {
-    if (checkValidity(element)) output.push(element);
-  });
-
-  if (output != "") return output;
-  else console.log("No match found!!");
+  return testSet;
 }
 
-function checkValidity(targetString) {
+function checkValidity(targetString, testSet) {
   let compareStr = "";
   let indexAt = [];
 
@@ -40,12 +45,9 @@ function checkValidity(targetString) {
       if (contains.call(testSet[i], targetString.charAt(j))) {
         compareStr = compareStr.concat(targetString.charAt(j));
         indexAt.push(i);
-        console.log({ indexAt });
       }
     }
   }
-
-  console.log({ compareStr });
 
   if (indexAt.length === targetString.length && compareStr === targetString) {
     if (isSorted(indexAt)) return true;
