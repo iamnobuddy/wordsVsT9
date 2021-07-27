@@ -1,5 +1,3 @@
-
-
 function generateTestSet(phoneNum, strArr) {
   let testSet = [];
   let numpad = {
@@ -15,33 +13,40 @@ function generateTestSet(phoneNum, strArr) {
   let output = [];
   let phoneNumStr = phoneNum.toString();
   for (i = 0; i < phoneNumStr.length; i++) {
-    currentNumber = phoneNumStr.charAt(i);
-    testSet.push(numpad[currentNumber]);
+    //check to see if there are repeating digits
+    if (i === 0) {
+      currentNumber = phoneNumStr.charAt(i);
+      testSet.push(numpad[currentNumber]);
+    } else if (phoneNumStr.charAt(i) != phoneNumStr.charAt(i - 1)) {
+      currentNumber = phoneNumStr.charAt(i);
+      testSet.push(numpad[currentNumber]);
+    }
   }
 
   strArr.forEach((element) => {
-    if (checkValidity(element, testSet)) output.push(element);
+    if (checkValidity(element)) output.push(element);
   });
 
   if (output != "") return output;
   else console.log("No match found!!");
 }
 
-function checkValidity(targetString, testSet) {
+function checkValidity(targetString) {
   let compareStr = "";
   let indexAt = [];
 
   for (i = 0; i < testSet.length; i++) {
     for (j = 0; j < targetString.length; j++) {
-        
       if (contains.call(testSet[i], targetString.charAt(j))) {
         compareStr = compareStr.concat(targetString.charAt(j));
         indexAt.push(i);
+        console.log({ indexAt });
       }
     }
   }
 
-  //
+  console.log({ compareStr });
+
   if (indexAt.length === targetString.length && compareStr === targetString) {
     if (isSorted(indexAt)) return true;
     else return false;
