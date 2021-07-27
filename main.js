@@ -37,7 +37,6 @@ function checkValidity(targetString, testSet) {
       if (contains.call(testSet[i], targetString.charAt(j))) {
         compareStr = compareStr.concat(targetString.charAt(j));
         indexAt.push(i);
-        console.log({ indexAt });
       }
     }
   }
