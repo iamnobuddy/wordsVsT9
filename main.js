@@ -1,4 +1,4 @@
-function generateTestSet(phoneNum, strArr) {
+function generateTestSetAndCheckValidity(phoneNum, strArr) {
   let testSet = [];
   let numpad = {
     2: "abc",
