@@ -21,16 +21,10 @@ function generateTestSet(phoneNum) {
     9: "wxyz",
   };
 
-  let phoneNumStr = phoneNum.toString();
-  for (i = 0; i < phoneNumStr.length; i++) {
-    //check to see if there are repeating digits
-    if (i === 0) {
-      currentNumber = phoneNumStr.charAt(i);
-      testSet.push(numpad[currentNumber]);
-    } else if (phoneNumStr.charAt(i) != phoneNumStr.charAt(i - 1)) {
-      currentNumber = phoneNumStr.charAt(i);
-      testSet.push(numpad[currentNumber]);
-    }
+  let phoneNumArr = [...new Set(phoneNum.toString().split(""))];
+  for (i = 0; i < phoneNumArr.length; i++) {
+    currentDigit = phoneNumArr[i];
+    testSet.push(numpad[currentDigit]);
   }
 
   return testSet;
