@@ -2,8 +2,8 @@ function wordsVsT9(phoneNum, strArr) {
   let output = [];
   let testSetArr = generateTestSet(phoneNum);
   
-  strArr.forEach((element) => {
-    if (checkValidity(element, testSetArr)) output.push(element);
+  strArr.forEach((word) => {
+    if (checkValidity(word, testSetArr)) output.push(element);
   });
 
   if (output != "") return output;
